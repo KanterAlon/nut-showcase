@@ -76,21 +76,21 @@ export default function Page({ params }) {
 
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-10 relative overflow-hidden">
+    <main className="min-h-screen flex flex-col items-center justify-center p-6 sm:p-10 relative overflow-hidden">
       <Image src="/wave-bg.svg" alt="" fill className="absolute inset-0 object-cover" />
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
-        className="relative max-w-5xl w-full space-y-10 glass p-8"
+        className="relative max-w-5xl w-full space-y-8 sm:space-y-10 glass p-6 sm:p-8"
       >
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-bold text-zetaGreen text-center md:text-left"
+          className="text-3xl sm:text-5xl font-bold text-zetaGreen text-center md:text-left break-words"
         >
           {monitor.title}
         </motion.h1>
@@ -108,7 +108,13 @@ export default function Page({ params }) {
             <motion.div
               variants={{ hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0 } }}
             >
-              <Image src={monitor.image} alt="logo" width={220} height={220} className="md:shrink-0" />
+              <Image
+                src={monitor.image}
+                alt="logo"
+                width={180}
+                height={180}
+                className="w-32 h-32 md:w-56 md:h-56 md:shrink-0"
+              />
             </motion.div>
           )}
           <motion.div
@@ -117,7 +123,7 @@ export default function Page({ params }) {
           >
             <motion.p
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="whitespace-pre-line text-lg leading-relaxed"
+              className="whitespace-pre-line text-base sm:text-lg leading-relaxed break-words"
             >
               {monitor.content}
             </motion.p>
@@ -138,7 +144,7 @@ export default function Page({ params }) {
               <button
                 key={step}
                 onClick={() => router.push(`/monitor/${step}`)}
-                className={`relative text-4xl transition-all ${
+                className={`relative text-3xl sm:text-4xl transition-all ${
                   step === id
                     ? "text-zetaBlue scale-110"
                     : "text-zetaGray hover:text-zetaGreen hover:scale-105"
@@ -157,3 +163,4 @@ export default function Page({ params }) {
     </main>
   );
 }
+
