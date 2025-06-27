@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import AnimatedParagraph from "../../../components/AnimatedParagraph";
 import { FaReact, FaNodeJs } from "react-icons/fa";
 import { FiMonitor } from "react-icons/fi";
 import {
@@ -67,6 +68,7 @@ export default function Page({ params }) {
   const router = useRouter();
   const id = parseInt(params.id, 10);
   const monitor = monitors[id] || monitors[1];
+  const paragraphs = monitor.content.split("\n\n");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -121,12 +123,9 @@ export default function Page({ params }) {
             variants={{ hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 } }}
             className="space-y-4"
           >
-            <motion.p
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="whitespace-pre-line text-base sm:text-lg leading-relaxed break-words"
-            >
-              {monitor.content}
-            </motion.p>
+            {paragraphs.map((text, idx) => (
+              <AnimatedParagraph key={idx}>{text}</AnimatedParagraph>
+            ))}
             {monitor.icons && <div>{monitor.icons}</div>}
           </motion.div>
         </motion.div>

@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import AnimatedParagraph from "../components/AnimatedParagraph";
 
 export default function Home() {
   return (
@@ -23,10 +24,10 @@ export default function Home() {
         <h1 className="text-4xl sm:text-6xl font-bold text-zetaGreen break-words">
           Bienvenido a NUT
         </h1>
-        <p className="text-base sm:text-lg leading-relaxed break-words">
+        <AnimatedParagraph>
           Explora nuestra evolución y descubre cómo usamos la tecnología
           para mejorar la educación alimentaria.
-        </p>
+        </AnimatedParagraph>
         <Link
           href="/monitor/1"
           className="inline-block px-6 py-3 bg-zetaGreen text-white rounded-lg hover:bg-zetaBlue transition-colors text-base"
