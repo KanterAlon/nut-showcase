@@ -79,21 +79,46 @@ export default function Page({ params }) {
   const hasPrev = id > 1;
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-10 bg-zetaCream text-zetaGray">
+    <main className="min-h-screen flex flex-col items-center justify-center p-10 relative overflow-hidden">
+      <Image src="/wave-bg.svg" alt="" fill className="absolute inset-0 object-cover" />
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="max-w-4xl text-left space-y-6"
+        className="relative max-w-5xl w-full space-y-10 glass p-8"
       >
-        <h1 className="text-4xl font-bold text-zetaGreen mb-6">{monitor.title}</h1>
-        {monitor.image && (
-          <div className="flex justify-center">
-            <Image src={monitor.image} alt="logo" width={120} height={120} />
-          </div>
-        )}
-        <p className="whitespace-pre-line text-lg leading-relaxed">{monitor.content}</p>
-        {monitor.icons && <div className="mt-4">{monitor.icons}</div>}
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-5xl font-bold text-zetaGreen text-center md:text-left"
+        >
+          {monitor.title}
+        </motion.h1>
+        <motion.div
+          className="flex flex-col md:flex-row items-center md:items-start md:space-x-8 space-y-6 md:space-y-0"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.2 } },
+          }}
+        >
+          {monitor.image && (
+            <motion.div
+              variants={{ hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0 } }}
+            >
+              <Image src={monitor.image} alt="logo" width={220} height={220} className="md:shrink-0" />
+            </motion.div>
+          )}
+          <motion.div
+            variants={{ hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 } }}
+            className="space-y-4"
+          >
+            <p className="whitespace-pre-line text-lg leading-relaxed">{monitor.content}</p>
+            {monitor.icons && <div>{monitor.icons}</div>}
+          </motion.div>
+        </motion.div>
         <div className="flex justify-between mt-8 text-zetaGreen font-semibold w-full">
           {hasPrev ? (
             <button onClick={() => router.push(`/monitor/${prevId}`)}>Anterior</button>
