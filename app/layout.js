@@ -14,9 +14,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es" className={poppins.className}>
-      <body className="min-h-screen bg-gradient-to-br from-zetaCream via-white to-zetaCream relative">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className="min-h-screen bg-gradient-to-br from-zetaCream via-white to-zetaCream relative antialiased">
         {children}
       </body>
     </html>
   );
 }
+

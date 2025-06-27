@@ -4,10 +4,12 @@
 @tailwind utilities;
 
 body {
-  @apply text-zetaGray;
+  @apply text-zetaGray antialiased;
   background: radial-gradient(circle at top left, #F4F1E9, #ffffff 70%, #F4F1E9);
+  scroll-behavior: smooth;
 }
 
 .glass {
   @apply bg-white/60 backdrop-blur-lg border border-white/40 rounded-xl shadow-2xl;
 }
+
