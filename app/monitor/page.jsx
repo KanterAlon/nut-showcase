@@ -6,11 +6,11 @@ import AnimatedParagraph from "../../components/AnimatedParagraph";
 
 const starVariants = {
   animate: {
-    y: [0, -15, 0],
+    x: [-10, 10, -10],
     rotate: [0, 45, 0],
     transition: {
       repeat: Infinity,
-      duration: 6,
+      duration: 8,
       ease: "easeInOut",
     },
   },
@@ -23,7 +23,7 @@ export default function MonitorIndex() {
       <motion.div
         variants={starVariants}
         animate="animate"
-        className="absolute left-8 top-8 w-14 h-14 pointer-events-none"
+        className="fixed bottom-8 left-8 w-14 h-14 pointer-events-none"
       >
         <Image src="/star.svg" alt="Decorative star" fill />
       </motion.div>
@@ -43,15 +43,6 @@ export default function MonitorIndex() {
         <AnimatedParagraph>
           Por favor, accede mediante el código QR asignado a cada monitor.
         </AnimatedParagraph>
-        <div className="flex justify-center">
-          <Image
-            src="https://media.giphy.com/media/xTiTnoHt2pT76JPrX6/giphy.gif"
-            alt="Decorative animation"
-            width={200}
-            height={200}
-            className="rounded-lg"
-          />
-        </div>
         <Link href="/monitor/1" className="inline-block px-6 py-3 bg-zetaGreen text-white rounded-lg hover:bg-zetaBlue transition-colors text-base">Comenzar</Link>
       </motion.div>
     </main>
