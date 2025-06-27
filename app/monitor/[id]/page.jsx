@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaReact, FaNodeJs } from "react-icons/fa";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import {
   SiExpress,
   SiJavascript,
@@ -119,14 +120,36 @@ export default function Page({ params }) {
             {monitor.icons && <div>{monitor.icons}</div>}
           </motion.div>
         </motion.div>
-        <div className="flex justify-between mt-8 text-zetaGreen font-semibold w-full">
+        <div className="flex justify-between items-center mt-8 w-full">
           {hasPrev ? (
-            <button onClick={() => router.push(`/monitor/${prevId}`)}>Anterior</button>
+            <button
+              onClick={() => router.push(`/monitor/${prevId}`)}
+              className="flex items-center space-x-2 px-4 py-2 bg-zetaGreen text-white rounded-lg hover:bg-zetaYellow transition-colors"
+            >
+              <FiChevronLeft />
+              <span>Anterior</span>
+            </button>
           ) : (
             <span />
           )}
+          <div className="flex-1 mx-4">
+            <div className="relative h-2 bg-zetaGray/20 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${(id / 3) * 100}%` }}
+                transition={{ duration: 0.6 }}
+                className="h-full bg-zetaBlue"
+              />
+            </div>
+          </div>
           {hasNext ? (
-            <button onClick={() => router.push(`/monitor/${nextId}`)}>Siguiente</button>
+            <button
+              onClick={() => router.push(`/monitor/${nextId}`)}
+              className="flex items-center space-x-2 px-4 py-2 bg-zetaGreen text-white rounded-lg hover:bg-zetaYellow transition-colors"
+            >
+              <span>Siguiente</span>
+              <FiChevronRight />
+            </button>
           ) : (
             <span />
           )}

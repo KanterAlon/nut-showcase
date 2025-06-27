@@ -12,7 +12,8 @@ module.exports = {
         zetaGreen: "#708238",
         zetaYellow: "#DBC04D",
         zetaGray: "#4D4D4D",
-        zetaCream: "#F4F1E9"
+        zetaCream: "#F4F1E9",
+        zetaBlue: "#3A7CA5"
       }
     },
   },
