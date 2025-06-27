@@ -4,10 +4,29 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import AnimatedParagraph from "../components/AnimatedParagraph";
 
+const starVariants = {
+  animate: {
+    y: [0, -20, 0],
+    rotate: [0, 45, 0],
+    transition: {
+      repeat: Infinity,
+      duration: 6,
+      ease: "easeInOut",
+    },
+  },
+};
+
 export default function Home() {
   return (
     <main className="relative min-h-screen flex items-center justify-center text-center overflow-hidden p-6 sm:p-8">
       <Image src="/wave-bg.svg" alt="" fill className="absolute inset-0 object-cover" />
+      <motion.div
+        variants={starVariants}
+        animate="animate"
+        className="absolute top-10 right-10 w-16 h-16 pointer-events-none"
+      >
+        <Image src="/star.svg" alt="Decorative star" fill />
+      </motion.div>
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -28,6 +47,15 @@ export default function Home() {
           Explora nuestra evolución y descubre cómo usamos la tecnología
           para mejorar la educación alimentaria.
         </AnimatedParagraph>
+        <div className="flex justify-center">
+          <Image
+            src="https://media.giphy.com/media/fuJPZBIIqTtlw/giphy.gif"
+            alt="Animación decorativa"
+            width={200}
+            height={200}
+            className="rounded-lg"
+          />
+        </div>
         <Link
           href="/monitor/1"
           className="inline-block px-6 py-3 bg-zetaGreen text-white rounded-lg hover:bg-zetaBlue transition-colors text-base"
