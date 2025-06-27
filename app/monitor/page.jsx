@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import AnimatedParagraph from "../../components/AnimatedParagraph";
 
 export default function MonitorIndex() {
   return (
@@ -20,7 +21,9 @@ export default function MonitorIndex() {
           height={140}
           className="mx-auto w-20 h-20 md:w-36 md:h-36"
         />
-          <p className="text-base sm:text-xl break-words">Por favor, accede mediante el c\u00f3digo QR asignado a cada monitor.</p>
+          <AnimatedParagraph>
+            Por favor, accede mediante el código QR asignado a cada monitor.
+          </AnimatedParagraph>
           <Link href="/monitor/1" className="inline-block px-6 py-3 bg-zetaGreen text-white rounded-lg hover:bg-zetaBlue transition-colors text-base">Comenzar</Link>
       </motion.div>
     </main>
