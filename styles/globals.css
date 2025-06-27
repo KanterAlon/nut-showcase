@@ -4,5 +4,10 @@
 @tailwind utilities;
 
 body {
-  @apply bg-zetaCream text-zetaGray;
+  @apply text-zetaGray;
+  background: linear-gradient(135deg, #F4F1E9 0%, #ffffff 50%, #F4F1E9 100%);
+}
+
+.glass {
+  @apply bg-white/60 backdrop-blur-lg border border-white/40 rounded-xl shadow-2xl;
 }
