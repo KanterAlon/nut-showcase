@@ -5,7 +5,7 @@
 
 body {
   @apply text-zetaGray;
-  background: linear-gradient(135deg, #F4F1E9 0%, #ffffff 50%, #F4F1E9 100%);
+  background: radial-gradient(circle at top left, #F4F1E9, #ffffff 70%, #F4F1E9);
 }
 
 .glass {
