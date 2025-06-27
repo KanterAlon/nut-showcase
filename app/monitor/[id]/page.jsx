@@ -20,7 +20,7 @@ import {
 
 const starVariants = {
   animate: {
-    scale: [1, 1.2, 1],
+    x: [-10, 10, -10],
     rotate: [0, 45, 0],
     transition: {
       repeat: Infinity,
@@ -89,13 +89,20 @@ export default function Page({ params }) {
   }, [id]);
 
 
+  const positionClasses = {
+    1: "top-8 left-8",
+    2: "bottom-8 left-8",
+    3: "bottom-8 right-8",
+  };
+  const starClass = positionClasses[id] || "top-8 left-8";
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 sm:p-10 relative overflow-hidden">
       <Image src="/wave-bg.svg" alt="" fill className="absolute inset-0 object-cover" />
       <motion.div
         variants={starVariants}
         animate="animate"
-        className="absolute left-8 top-8 w-14 h-14 pointer-events-none"
+        className={`fixed ${starClass} w-14 h-14 pointer-events-none`}
       >
         <Image src="/star.svg" alt="Decorative star" fill />
       </motion.div>
@@ -145,15 +152,6 @@ export default function Page({ params }) {
             {paragraphs.map((text, idx) => (
               <AnimatedParagraph key={idx}>{text}</AnimatedParagraph>
             ))}
-            <div className="flex justify-center">
-              <Image
-                src="https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif"
-                alt="Decorative animation"
-                width={200}
-                height={200}
-                className="rounded-lg"
-              />
-            </div>
             {monitor.icons && <div>{monitor.icons}</div>}
           </motion.div>
         </motion.div>
