@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaReact, FaNodeJs } from "react-icons/fa";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiMonitor } from "react-icons/fi";
 import {
   SiExpress,
   SiJavascript,
@@ -74,23 +74,21 @@ export default function Page({ params }) {
     }
   }, [id]);
 
-  const nextId = id + 1;
-  const prevId = id - 1;
-  const hasNext = id < 3;
-  const hasPrev = id > 1;
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-10 relative overflow-hidden">
       <Image src="/wave-bg.svg" alt="" fill className="absolute inset-0 object-cover" />
       <motion.div
         initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
         className="relative max-w-5xl w-full space-y-10 glass p-8"
       >
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6 }}
           className="text-5xl font-bold text-zetaGreen text-center md:text-left"
         >
@@ -99,7 +97,8 @@ export default function Page({ params }) {
         <motion.div
           className="flex flex-col md:flex-row items-center md:items-start md:space-x-8 space-y-6 md:space-y-0"
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           variants={{
             hidden: {},
             visible: { transition: { staggerChildren: 0.2 } },
@@ -116,43 +115,43 @@ export default function Page({ params }) {
             variants={{ hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 } }}
             className="space-y-4"
           >
-            <p className="whitespace-pre-line text-lg leading-relaxed">{monitor.content}</p>
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="whitespace-pre-line text-lg leading-relaxed"
+            >
+              {monitor.content}
+            </motion.p>
             {monitor.icons && <div>{monitor.icons}</div>}
           </motion.div>
         </motion.div>
-        <div className="flex justify-between items-center mt-8 w-full">
-          {hasPrev ? (
-            <button
-              onClick={() => router.push(`/monitor/${prevId}`)}
-              className="flex items-center space-x-2 px-4 py-2 bg-zetaGreen text-white rounded-lg hover:bg-zetaYellow transition-colors"
-            >
-              <FiChevronLeft />
-              <span>Anterior</span>
-            </button>
-          ) : (
-            <span />
-          )}
-          <div className="flex-1 mx-4">
-            <div className="relative h-2 bg-zetaGray/20 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${(id / 3) * 100}%` }}
-                transition={{ duration: 0.6 }}
-                className="h-full bg-zetaBlue"
-              />
-            </div>
+        <div className="mt-8 space-y-4 w-full">
+          <div className="relative h-2 bg-zetaGray/20 rounded-full overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: `${(id / 3) * 100}%` }}
+              transition={{ duration: 0.6 }}
+              className="h-full bg-zetaBlue"
+            />
           </div>
-          {hasNext ? (
-            <button
-              onClick={() => router.push(`/monitor/${nextId}`)}
-              className="flex items-center space-x-2 px-4 py-2 bg-zetaGreen text-white rounded-lg hover:bg-zetaYellow transition-colors"
-            >
-              <span>Siguiente</span>
-              <FiChevronRight />
-            </button>
-          ) : (
-            <span />
-          )}
+          <div className="flex justify-center space-x-6">
+            {[1, 2, 3].map((step) => (
+              <button
+                key={step}
+                onClick={() => router.push(`/monitor/${step}`)}
+                className={`relative text-4xl transition-all ${
+                  step === id
+                    ? "text-zetaBlue scale-110"
+                    : "text-zetaGray hover:text-zetaGreen hover:scale-105"
+                }`}
+                aria-label={`Monitor ${step}`}
+              >
+                <FiMonitor />
+                <span className="absolute inset-0 flex items-center justify-center text-sm font-bold">
+                  {step}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </motion.div>
     </main>
