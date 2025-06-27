@@ -69,12 +69,14 @@ export default function Page({ params }) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.history.replaceState(null, "", "/monitor");
+      window.history.replaceState(null, "", "/");
     }
   }, [id]);
 
-  const nextId = id >= 3 ? 1 : id + 1;
-  const prevId = id <= 1 ? 3 : id - 1;
+  const nextId = id + 1;
+  const prevId = id - 1;
+  const hasNext = id < 3;
+  const hasPrev = id > 1;
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-10 bg-zetaCream text-zetaGray">
@@ -92,9 +94,17 @@ export default function Page({ params }) {
         )}
         <p className="whitespace-pre-line text-lg leading-relaxed">{monitor.content}</p>
         {monitor.icons && <div className="mt-4">{monitor.icons}</div>}
-        <div className="flex justify-between mt-8 text-zetaGreen font-semibold">
-          <button onClick={() => router.push(`/monitor/${prevId}`)}>Anterior</button>
-          <button onClick={() => router.push(`/monitor/${nextId}`)}>Siguiente</button>
+        <div className="flex justify-between mt-8 text-zetaGreen font-semibold w-full">
+          {hasPrev ? (
+            <button onClick={() => router.push(`/monitor/${prevId}`)}>Anterior</button>
+          ) : (
+            <span />
+          )}
+          {hasNext ? (
+            <button onClick={() => router.push(`/monitor/${nextId}`)}>Siguiente</button>
+          ) : (
+            <span />
+          )}
         </div>
       </motion.div>
     </main>
